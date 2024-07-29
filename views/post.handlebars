@@ -1,0 +1,36 @@
+{{!-- Layout for the post page --}}
+{{> header}}
+
+<main>
+  <article>
+    <h1>{{post.title}}</h1>
+    <p>{{post.content}}</p>
+    <footer>
+      <p>Posted by {{post.user.username}} on {{post.createdAt}}</p>
+    </footer>
+  </article>
+
+  {{#if loggedIn}}
+    <section>
+      <h2>Leave a Comment</h2>
+      <form id="comment-form">
+        <textarea id="comment-text" name="comment_text" required></textarea>
+        <button type="submit">Submit</button>
+      </form>
+    </section>
+  {{/if}}
+
+  <section>
+    <h2>Comments</h2>
+    {{#each comments}}
+      <div>
+        <p>{{this.comment_text}}</p>
+        <footer>
+          <p>Commented by {{this.user.username}} on {{this.createdAt}}</p>
+        </footer>
+      </div>
+    {{/each}}
+  </section>
+</main>
+
+{{> footer}}
