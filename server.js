@@ -8,6 +8,7 @@ const sequelize = require('./config/connection');
 const helpers = require('./utils/helpers');
 const apiRoutes = require('./controllers/api');
 const homeRoutes = require('./controllers/homeRoutes');
+const dashboardRoutes = require('./controllers/dashboardRoutes'); // Add this line
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -41,6 +42,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api', apiRoutes);
 app.use('/', homeRoutes);
+app.use('/dashboard', dashboardRoutes); // Add this line
 
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log('Now listening'));

@@ -1,10 +1,3 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const loginForm = document.querySelector('.login-form');
-  if (loginForm) {
-    loginForm.addEventListener('submit', loginFormHandler);
-  }
-});
-
 const loginFormHandler = async (event) => {
   event.preventDefault();
 
@@ -31,3 +24,10 @@ const loginFormHandler = async (event) => {
     }
   }
 };
+
+document.addEventListener('DOMContentLoaded', () => {
+  const loginForm = document.querySelector('.login-form');
+  if (loginForm) {
+    loginForm.addEventListener('submit', loginFormHandler);
+  }
+});

@@ -1,12 +1,15 @@
 <header>
+  <h1>Your Tech Blog</h1>
   <nav>
-    <a href="/">Home</a>
-    {{#if logged_in}}
-      <a href="/dashboard">Dashboard</a>
-      <button id="logout">Logout</button>
-    {{else}}
-      <a href="/login">Login</a>
-      <a href="/signup">Sign Up</a>
-    {{/if}}
+    <ul>
+      <li><a href="/">Home</a></li>
+      {{#if logged_in}}
+      <li><a href="/dashboard">Dashboard</a></li>
+      <li><button id="logout">Logout</button></li>
+      {{else}}
+      <li><a href="/login">Login</a></li>
+      <li><a href="/signup">Sign Up</a></li>
+      {{/if}}
+    </ul>
   </nav>
 </header>

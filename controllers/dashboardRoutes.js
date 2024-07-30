@@ -2,6 +2,12 @@ const router = require('express').Router();
 const { Post, User } = require('../models');
 const withAuth = require('../utils/auth');
 
+router.get('/new-post', withAuth, (req, res) => {
+  res.render('new-post', {
+    logged_in: req.session.logged_in
+  });
+});
+
 router.get('/', withAuth, async (req, res) => {
   console.log('Dashboard route - Session:', req.session);
   try {

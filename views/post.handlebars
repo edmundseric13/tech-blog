@@ -1,16 +1,14 @@
 {{!-- Layout for the post page --}}
-{{> header}}
-
 <main>
   <article>
     <h1>{{post.title}}</h1>
     <p>{{post.content}}</p>
     <footer>
-      <p>Posted by {{post.user.username}} on {{post.createdAt}}</p>
+      <p>Posted by {{post.user.username}} on {{format_date post.createdAt}}</p>
     </footer>
   </article>
 
-  {{#if loggedIn}}
+  {{#if logged_in}}
     <section>
       <h2>Leave a Comment</h2>
       <form id="comment-form">
@@ -26,11 +24,11 @@
       <div>
         <p>{{this.comment_text}}</p>
         <footer>
-          <p>Commented by {{this.user.username}} on {{this.createdAt}}</p>
+          <p>Commented by {{this.user.username}} on {{format_date this.createdAt}}</p>
         </footer>
       </div>
     {{/each}}
   </section>
 </main>
 
-{{> footer}}
+<script src="/js/comment.js"></script>

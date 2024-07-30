@@ -16,7 +16,8 @@ router.post('/signup', async (req, res) => {
     if (err.name === 'SequelizeUniqueConstraintError') {
       res.status(400).json({ message: 'This username is already taken.' });
     } else {
-      res.status(500).json({ message: 'An error occurred during signup.', error: err });
+      console.error('Signup error:', err);
+      res.status(500).json({ message: 'An error occurred during signup.' });
     }
   }
 });
@@ -44,7 +45,8 @@ router.post('/login', async (req, res) => {
       res.json({ user: userData, message: 'You are now logged in!' });
     });
   } catch (err) {
-    res.status(400).json({ message: 'An error occurred during login.', error: err });
+    console.error('Login error:', err);
+    res.status(500).json({ message: 'An error occurred during login.' });
   }
 });
 
@@ -58,7 +60,6 @@ router.post('/logout', (req, res) => {
   }
 });
 
-// New dashboard route
 router.get('/dashboard', withAuth, async (req, res) => {
   try {
     const userData = await User.findByPk(req.session.user_id, {
@@ -78,7 +79,8 @@ router.get('/dashboard', withAuth, async (req, res) => {
       logged_in: true
     });
   } catch (err) {
-    res.status(500).json({ message: 'An error occurred while loading the dashboard.', error: err });
+    console.error('Dashboard error:', err);
+    res.status(500).json({ message: 'An error occurred while loading the dashboard.' });
   }
 });
 
