@@ -39,4 +39,14 @@ Comment.init(
   }
 );
 
+// Add this associate function after Comment.init
+Comment.associate = (models) => {
+  Comment.belongsTo(models.User, {
+    foreignKey: 'user_id'
+  });
+  Comment.belongsTo(models.Post, {
+    foreignKey: 'post_id'
+  });
+};
+
 module.exports = Comment;

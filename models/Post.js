@@ -36,4 +36,14 @@ Post.init(
   }
 );
 
+Post.associate = (models) => {
+  Post.belongsTo(models.User, {
+    foreignKey: 'user_id'
+  });
+  Post.hasMany(models.Comment, {
+    foreignKey: 'post_id',
+    onDelete: 'CASCADE'
+  });
+};
+
 module.exports = Post;
