@@ -24,12 +24,12 @@ router.put('/:id', withAuth, async (req, res) => {
       },
     });
 
-    if (!postData) {
+    if (!postData[0]) {
       res.status(404).json({ message: 'No post found with this id!' });
       return;
     }
 
-    res.status(200).json(postData);
+    res.status(200).json({ message: 'Post updated successfully' });
   } catch (err) {
     res.status(500).json(err);
   }
@@ -49,7 +49,7 @@ router.delete('/:id', withAuth, async (req, res) => {
       return;
     }
 
-    res.status(200).json(postData);
+    res.status(200).json({ message: 'Post deleted successfully' });
   } catch (err) {
     res.status(500).json(err);
   }

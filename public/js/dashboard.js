@@ -1,12 +1,10 @@
 const newPostFormHandler = async (event) => {
     event.preventDefault();
   
-    // Get the title and content from the form
     const title = document.querySelector('#post-title').value.trim();
     const content = document.querySelector('#post-content').value.trim();
   
     if (title && content) {
-      // Send a POST request to create a new post
       const response = await fetch('/api/posts', {
         method: 'POST',
         body: JSON.stringify({ title, content }),
@@ -37,6 +35,13 @@ const newPostFormHandler = async (event) => {
     }
   };
   
+  const editButtonHandler = (event) => {
+    if (event.target.hasAttribute('data-id')) {
+      const id = event.target.getAttribute('data-id');
+      document.location.replace(`/dashboard/edit-post/${id}`);
+    }
+  };
+  
   document.addEventListener('DOMContentLoaded', () => {
     const newPostForm = document.querySelector('.new-post-form');
     if (newPostForm) {
@@ -45,6 +50,12 @@ const newPostFormHandler = async (event) => {
   
     const postList = document.querySelector('.post-list');
     if (postList) {
-      postList.addEventListener('click', delButtonHandler);
+      postList.addEventListener('click', (event) => {
+        if (event.target.classList.contains('delete-post')) {
+          delButtonHandler(event);
+        } else if (event.target.classList.contains('edit-post')) {
+          editButtonHandler(event);
+        }
+      });
     }
   });
